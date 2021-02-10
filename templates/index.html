@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+</head>
+<body>
+<h2>Select the dataset</h2>
+<form action="/" method="post">
+    <select name="company" id="A">
+        <option value="company_A.csv">CompanyA</option>
+
+    </select>
+
+    <input type="submit" value="OK">
+</form>
+<div>
+    <h2>PREDICTION</h2>
+    <canvas id="myChart" ></canvas>
+</div>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{pp|safe}},
+        datasets: [
+        {
+            label: 'real',
+            data: {{ptr|safe}},
+            borderColor: 'rgb(255, 99, 132)',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'prediction',
+            data: {{ssm|safe}},
+            borderColor: 'rgb( 99, 255, 132)',
+            borderWidth: 1,
+            fill: false
+        }
+        ]
+    },
+    options: {
+        }
+});
+</script>
+</body>
+</html>
